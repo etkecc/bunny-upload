@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"flag"
 	"fmt"
 	"io"
@@ -22,6 +23,7 @@ var (
 	accessKey   string
 	absPath     string
 	wp          *workpool.WorkPool
+	client      *http.Client
 )
 
 func getURL(path, name string) (string, string) {
@@ -41,6 +43,11 @@ func main() {
 	flag.StringVar(&accessKey, "k", "", "access key (storage zone password)")
 	flag.Parse()
 	wp = workpool.New(75) // max concurrent connections to storage zone
+	client = &http.Client{
+		Transport: &http.Transport{
+			TLSNextProto: map[string]func(string, *tls.Conn) http.RoundTripper{}, // disable HTTP2 due to GOAWAY issue
+		},
+	}
 
 	var err error
 	absPath, err = filepath.Abs(argpath)
@@ -72,7 +79,7 @@ func uploadFile(uri, path, rpath string) error {
 
 	req.Header.Add("AccessKey", accessKey)
 	req.Header.Add("Content-Type", "application/octet-stream")
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := client.Do(req)
 	if err != nil {
 		return err
 	}
