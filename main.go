@@ -7,7 +7,6 @@ import (
 	"io"
 	"io/fs"
 	"net/http"
-	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -26,14 +25,9 @@ var (
 	client      *http.Client
 )
 
-func getURL(path, name string) (string, string) {
+func getURL(path string) (string, string) {
 	rpath := strings.TrimPrefix(path, absPath+"/")
-	rpath = strings.TrimSuffix(rpath, "/"+name)
-	if rpath == name {
-		return fmt.Sprintf("%s/%s/%s", API, storageZone, name), name
-	}
-
-	return fmt.Sprintf("%s/%s/%s/%s", API, storageZone, url.PathEscape(rpath), name), rpath + "/" + name
+	return fmt.Sprintf("%s/%s%s", API, storageZone, rpath), rpath
 }
 
 func main() {
@@ -98,7 +92,7 @@ func walkfs(path string, info fs.FileInfo, err error) error {
 	if info.IsDir() {
 		return nil
 	}
-	uri, rpath := getURL(path, info.Name())
+	uri, rpath := getURL(path)
 	wp.Do(func() error { return uploadFile(uri, path, rpath) })
 
 	return nil
