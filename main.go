@@ -27,7 +27,7 @@ var (
 
 func getURL(path string) (string, string) {
 	rpath := strings.TrimPrefix(path, absPath+"/")
-	return fmt.Sprintf("%s/%s%s", API, storageZone, rpath), rpath
+	return fmt.Sprintf("%s/%s/%s", API, storageZone, rpath), rpath
 }
 
 func main() {
