@@ -1,4 +1,4 @@
-module gitlab.com/etke.cc/int/bunny-upload
+module gitlab.com/etke.cc/tools/bunny-upload
 
 go 1.19
 

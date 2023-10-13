@@ -25,7 +25,7 @@ var (
 	client      *http.Client
 )
 
-func getURL(path string) (string, string) {
+func getURL(path string) (url, uri string) {
 	rpath := strings.TrimPrefix(path, absPath+"/")
 	return fmt.Sprintf("%s/%s/%s", API, storageZone, rpath), rpath
 }
@@ -66,10 +66,11 @@ func uploadFile(uri, path, rpath string) error {
 	}
 	defer file.Close()
 
-	req, err := http.NewRequest("PUT", uri, file)
+	req, err := http.NewRequest(http.MethodPut, uri, file)
 	if err != nil {
 		return err
 	}
+	defer req.Body.Close()
 
 	req.Header.Add("AccessKey", accessKey)
 	req.Header.Add("Content-Type", "application/octet-stream")
@@ -77,7 +78,7 @@ func uploadFile(uri, path, rpath string) error {
 	if err != nil {
 		return err
 	}
-	defer req.Body.Close()
+	defer resp.Body.Close()
 	if resp.StatusCode > 299 {
 		body, err := io.ReadAll(resp.Body)
 		fmt.Printf("%s uri=%s status=FAIL code=%d %s err=%v\n", rpath, uri, resp.StatusCode, string(body), err)
@@ -88,7 +89,7 @@ func uploadFile(uri, path, rpath string) error {
 	return nil
 }
 
-func walkfs(path string, info fs.FileInfo, err error) error {
+func walkfs(path string, info fs.FileInfo, _ error) error {
 	if info.IsDir() {
 		return nil
 	}
