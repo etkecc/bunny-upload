@@ -150,11 +150,12 @@ github.com/ugorji/go v1.1.4/go.mod h1:uQMGLiO92mf5W77hV/PUCpI3pbzQx3CRekS0kk+RGr
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
 github.com/xxjwxc/gowp v0.0.0-20200603130651-4d7368b0e285/go.mod h1:yJ/fY5BorWARfDDsxBU/MyQTHc5MVyNcqBQQYD6MN0k=
-github.com/xxjwxc/gowp v0.0.0-20220528192505-f87b7668d4ff h1:rbakxW5QsRJ4it9w5yXDucHZTIOrTboRV3xeBQ+60F0=
-github.com/xxjwxc/gowp v0.0.0-20220528192505-f87b7668d4ff/go.mod h1:oaLsbo1ZWr4jYanHCB6zQetBkmQHNNH8N9E7xbmrLWc=
+github.com/xxjwxc/gowp v0.0.0-20230612082025-23a9b62c1da6 h1:u/XfxctLMBf43S1ATmfbKlNTM6x/TXCC5q5g0GvDg+A=
+github.com/xxjwxc/gowp v0.0.0-20230612082025-23a9b62c1da6/go.mod h1:oaLsbo1ZWr4jYanHCB6zQetBkmQHNNH8N9E7xbmrLWc=
 github.com/xxjwxc/public v0.0.0-20200603115833-341beff27850/go.mod h1:fp3M+FEQrCgWD1fZ/PLwZkCTglf086OEhC9LcydAUnc=
-github.com/xxjwxc/public v0.0.0-20210518123934-6cc0965f0bc5 h1:PYu1xvS3JoXfLl3Yz5H0vdxdlvsMItQoFOZccJMIG54=
 github.com/xxjwxc/public v0.0.0-20210518123934-6cc0965f0bc5/go.mod h1:za2pkqdDH64CbdyuZz6dqI+IhjCgstXeoWD3IAWbiAc=
+github.com/xxjwxc/public v0.0.0-20231123085200-159e77d6cf08 h1:dx0GYCGuOxAQetW/DvL4YCDQD9pm8XBSveCjU7EiSvA=
+github.com/xxjwxc/public v0.0.0-20231123085200-159e77d6cf08/go.mod h1:37y/Uj8+rjnAGLMN9Dsj3oy9ZjQTpYjyc612imliZ3c=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.opentelemetry.io/otel v0.16.0/go.mod h1:e4GKElweB8W2gWUqbghw0B8t5MCTccc9212eNHnOHwA=
 go.uber.org/atomic v1.4.0/go.mod h1:gD2HeocX3+yG+ygLZcrzQJaqmWj9AIm7n08wl/qW/PE=
