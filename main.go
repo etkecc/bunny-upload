@@ -24,14 +24,10 @@ const (
 )
 
 var (
-	configPath        string
-	pullZoneID        int
-	pullZoneAccessKey string
-	storageZone       string
-	storagePassword   string
-	wp                *workpool.WorkPool
-	client            *http.Client
-	cfg               *config.Config
+	configPath string
+	wp         *workpool.WorkPool
+	client     *http.Client
+	cfg        *config.Config
 )
 
 func main() {
@@ -60,37 +56,13 @@ func main() {
 }
 
 func parseConfig() error {
-	var argpath string
 	flag.StringVar(&configPath, "c", "", "path to the config file")
-
-	flag.StringVar(&argpath, "p", "", "path to the folder to upload recursively")
-
-	flag.StringVar(&storageZone, "z", "", "storage zone")
-	flag.StringVar(&storagePassword, "k", "", "access key (storage zone password)")
-
-	flag.IntVar(&pullZoneID, "i", 0, "pull zone ID")
-	flag.StringVar(&pullZoneAccessKey, "a", "", "access key (pull zone)")
-
 	flag.Parse()
 
-	if configPath == "" {
-		cfg = &config.Config{
-			Path: argpath,
-			Cache: config.Cache{
-				PullZone:  pullZoneID,
-				AccessKey: pullZoneAccessKey,
-			},
-			Storage: config.Storage{
-				Zone:     storageZone,
-				Password: storagePassword,
-			},
-		}
-	} else {
-		var err error
-		cfg, err = config.Read(configPath)
-		if err != nil {
-			return err
-		}
+	var err error
+	cfg, err = config.Read(configPath)
+	if err != nil {
+		return err
 	}
 
 	absPath, err := filepath.Abs(cfg.Path)
