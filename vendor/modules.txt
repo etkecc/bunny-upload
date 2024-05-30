@@ -1,9 +1,12 @@
 # github.com/xxjwxc/gowp v0.0.0-20230612082025-23a9b62c1da6
 ## explicit; go 1.13
 github.com/xxjwxc/gowp/workpool
-# github.com/xxjwxc/public v0.0.0-20231123085200-159e77d6cf08
+# github.com/xxjwxc/public v0.0.0-20240524110248-a4055cba2236
 ## explicit; go 1.21.0
 github.com/xxjwxc/public/myqueue
 # gopkg.in/eapache/queue.v1 v1.1.0
 ## explicit
 gopkg.in/eapache/queue.v1
+# gopkg.in/yaml.v3 v3.0.1
+## explicit
+gopkg.in/yaml.v3

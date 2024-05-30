@@ -1,0 +1,9 @@
+path: ./public/ # The directory with the files to deploy
+cache: # Bunny-Upload can automatically purge the cache for you (optional)
+  pull_zone: 123456 # The Pull Zone ID
+  access_key: super-secret-key # The Bunny CDN API Access Key
+storage: # Bunny-Upload will upload files and dirs from path to Bunny Storage
+  storage_zone: your-zone # The Storage Zone name
+  password: super-secret-password # The Bunny Storage Zone's password
+
+# vi: ft=yaml
