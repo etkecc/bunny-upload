@@ -156,8 +156,8 @@ github.com/xxjwxc/gowp v0.0.0-20230612082025-23a9b62c1da6 h1:u/XfxctLMBf43S1ATmf
 github.com/xxjwxc/gowp v0.0.0-20230612082025-23a9b62c1da6/go.mod h1:oaLsbo1ZWr4jYanHCB6zQetBkmQHNNH8N9E7xbmrLWc=
 github.com/xxjwxc/public v0.0.0-20200603115833-341beff27850/go.mod h1:fp3M+FEQrCgWD1fZ/PLwZkCTglf086OEhC9LcydAUnc=
 github.com/xxjwxc/public v0.0.0-20210518123934-6cc0965f0bc5/go.mod h1:za2pkqdDH64CbdyuZz6dqI+IhjCgstXeoWD3IAWbiAc=
-github.com/xxjwxc/public v0.0.0-20240524110248-a4055cba2236 h1:eHO8L3MdGB9fHWN/BonLK+trl2Pl6zFn8GjuyH3ItK0=
-github.com/xxjwxc/public v0.0.0-20240524110248-a4055cba2236/go.mod h1:0X3Urd7N/O16UI6hDTnIrUxteju3PRiri1iZipXh1hI=
+github.com/xxjwxc/public v0.0.0-20240705102424-9b12e8672060 h1:t4dFmdqB7ciiLu1wGHnD7P3frvYOE3hiSjtBY2gSZaY=
+github.com/xxjwxc/public v0.0.0-20240705102424-9b12e8672060/go.mod h1:0X3Urd7N/O16UI6hDTnIrUxteju3PRiri1iZipXh1hI=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.opentelemetry.io/otel v0.16.0/go.mod h1:e4GKElweB8W2gWUqbghw0B8t5MCTccc9212eNHnOHwA=
 go.uber.org/atomic v1.4.0/go.mod h1:gD2HeocX3+yG+ygLZcrzQJaqmWj9AIm7n08wl/qW/PE=

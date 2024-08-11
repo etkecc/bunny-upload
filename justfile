@@ -4,7 +4,7 @@ default:
 
 # update go deps
 update *flags:
-    go get {{ flags }} .
+    go get {{ flags }} ./cmd
     go mod tidy
     go mod vendor
 
@@ -16,6 +16,10 @@ lint:
 lintfix:
     golangci-lint run --fix ./...
 
+# generate mocks
+mocks:
+    @mockery --all --inpackage --testonly --exclude vendor
+
 # run unit tests
 test packages="./...":
     @go test -cover -coverprofile=cover.out -coverpkg={{ packages }} -covermode=set {{ packages }}
@@ -24,8 +28,8 @@ test packages="./...":
 
 # run app
 run:
-    @go run .
+    @go run ./cmd
 
 # build app
 build:
-    CGO_ENABLED=0 go build -ldflags '-extldflags "-static"' -tags timetzdata,goolm -v -o bunny-upload .
+    CGO_ENABLED=0 go build -ldflags '-extldflags "-static"' -tags timetzdata,goolm -v -o bunny-upload ./cmd

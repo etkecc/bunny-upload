@@ -1,4 +1,4 @@
-module gitlab.com/etke.cc/tools/bunny-upload
+module github.com/etkecc/bunny-upload
 
 go 1.21.0
 
@@ -10,6 +10,6 @@ require (
 )
 
 require (
-	github.com/xxjwxc/public v0.0.0-20240524110248-a4055cba2236 // indirect
+	github.com/xxjwxc/public v0.0.0-20240705102424-9b12e8672060 // indirect
 	gopkg.in/eapache/queue.v1 v1.1.0 // indirect
 )

@@ -13,7 +13,8 @@ import (
 	"strings"
 
 	"github.com/xxjwxc/gowp/workpool"
-	"gitlab.com/etke.cc/tools/bunny-upload/config"
+
+	"github.com/etkecc/bunny-upload/internal/config"
 )
 
 const (
