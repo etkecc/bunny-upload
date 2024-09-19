@@ -4,7 +4,7 @@ default:
 
 # update go deps
 update *flags:
-    go get {{ flags }} ./cmd
+    go get {{ flags }} ./cmd/bunny-upload
     go mod tidy
     go mod vendor
 
@@ -27,9 +27,13 @@ test packages="./...":
     -@rm -f cover.out
 
 # run app
-run:
-    @go run ./cmd
+run *flags:
+    @go run ./cmd/bunny-upload {{ flags }}
+
+# install app
+install:
+    @CGO_ENABLED=0 go install -ldflags '-extldflags "-static"' -tags timetzdata,goolm -v ./cmd/bunny-upload
 
 # build app
 build:
-    CGO_ENABLED=0 go build -ldflags '-extldflags "-static"' -tags timetzdata,goolm -v -o bunny-upload ./cmd
+    @CGO_ENABLED=0 go build -ldflags '-extldflags "-static"' -tags timetzdata,goolm -v ./cmd/bunny-upload

@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/xxjwxc/gowp/workpool"
+	"github.com/etkecc/go-kit/workpool"
 
 	"github.com/etkecc/bunny-upload/internal/config"
 )
@@ -47,9 +47,7 @@ func main() {
 		panic(err)
 	}
 
-	if err := wp.Wait(); err != nil {
-		panic(err)
-	}
+	wp.Run()
 
 	if err := purgeCache(); err != nil {
 		panic(err)
@@ -127,7 +125,11 @@ func walkfs(path string, info fs.FileInfo, _ error) error {
 		return nil
 	}
 	uri, rpath := getURL(path)
-	wp.Do(func() error { return uploadFile(uri, path, rpath) })
+	wp.Do(func() {
+		if err := uploadFile(uri, path, rpath); err != nil {
+			fmt.Printf("%s uri=%s status=FAIL err=%v\n", rpath, uri, err)
+		}
+	})
 
 	return nil
 }

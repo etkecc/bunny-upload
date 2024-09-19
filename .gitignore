@@ -1,2 +1,3 @@
-dist/
-config.yml
+/cover.out
+/.env
+/config.yml
