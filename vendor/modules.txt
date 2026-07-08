@@ -1,5 +1,7 @@
-# github.com/etkecc/go-kit v1.7.1
-## explicit; go 1.22
+# github.com/etkecc/go-kit v1.12.3
+## explicit; go 1.26
+github.com/etkecc/go-kit/httpclient
+github.com/etkecc/go-kit/retry
 github.com/etkecc/go-kit/workpool
 # github.com/kr/pretty v0.2.0
 ## explicit; go 1.12

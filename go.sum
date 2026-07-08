@@ -1,5 +1,5 @@
-github.com/etkecc/go-kit v1.7.1 h1:4+OonTxYNe8CsK1L8Udj3Ag26ZkzTgOBVxXAvwTAtoE=
-github.com/etkecc/go-kit v1.7.1/go.mod h1:ZFeQrvlMIV6OeZ4XJ090kkyNYRRN4+5wcg1vjnOKEGI=
+github.com/etkecc/go-kit v1.12.3 h1:iexjBrOw+WxuxAmpcrdScTlr0QGZKm4xvLGTeaXUjmc=
+github.com/etkecc/go-kit v1.12.3/go.mod h1:Mj5wxe1ntD+yxAxxozIb/F9ns4sLEeRTzHjFiNdNP9g=
 github.com/kr/pretty v0.2.0 h1:s5hAObm+yFO5uHYt5dYjxi2rXrsnmRpJx4OYvIWUaQs=
 github.com/kr/pretty v0.2.0/go.mod h1:ipq/a2n7PKx3OHsz4KJII5eveXtPO4qwEXGdVfWzfnI=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=

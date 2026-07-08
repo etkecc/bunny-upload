@@ -1,11 +1,9 @@
 module github.com/etkecc/bunny-upload
 
-go 1.22
-
-toolchain go1.23.1
+go 1.26
 
 require (
-	github.com/etkecc/go-kit v1.7.1
+	github.com/etkecc/go-kit v1.12.3
 	gopkg.in/yaml.v3 v3.0.1
 )
 

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"crypto/tls"
 	"errors"
 	"flag"
 	"fmt"
@@ -12,6 +11,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/etkecc/go-kit/httpclient"
 	"github.com/etkecc/go-kit/workpool"
 
 	"github.com/etkecc/bunny-upload/internal/config"
@@ -37,11 +37,12 @@ func main() {
 	}
 
 	wp = workpool.New(75) // max concurrent connections to storage zone
-	client = &http.Client{
-		Transport: &http.Transport{
-			TLSNextProto: map[string]func(string, *tls.Conn) http.RoundTripper{}, // disable HTTP2 due to GOAWAY issue
-		},
-	}
+	// HTTP/1 only: Bunny storage sends GOAWAY mid-upload on HTTP/2, and a multi-GB retry loop is not the hill to die on.
+	// HTTP2 stays explicitly off, not just unset: WithProtocols replaces the preset's H1+H2 default wholesale.
+	protocols := new(http.Protocols)
+	protocols.SetHTTP1(true)
+	protocols.SetHTTP2(false)
+	client = httpclient.NewSingleHost(httpclient.WithProtocols(protocols))
 
 	if err := filepath.Walk(cfg.Path, walkfs); err != nil {
 		panic(err)
