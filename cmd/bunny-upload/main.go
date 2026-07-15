@@ -98,10 +98,24 @@ func uploadFile(uri, path, rpath string) error {
 		return err
 	}
 
+	info, err := file.Stat()
+	if err != nil {
+		return err
+	}
+
 	req, err := http.NewRequest(http.MethodPut, uri, file)
 	if err != nil {
 		return err
 	}
+	// an *os.File is a one-shot reader net/http won't rewind for you, so without GetBody the retrier
+	// refuses the PUT with ErrNonReplayableBody and every upload dies before a byte leaves. reopen by
+	// path: attempt 2 gets a fresh file from zero, no slurping the multi-GB blob into RAM to replay it.
+	req.GetBody = func() (io.ReadCloser, error) {
+		return os.Open(path)
+	}
+	// pin Content-Length so the PUT is fixed-length, not chunked: a connection dropped mid-upload then
+	// fails loud with a length mismatch instead of Bunny storing the truncated body as a complete object.
+	req.ContentLength = info.Size()
 	defer req.Body.Close()
 
 	req.Header.Add("AccessKey", cfg.Storage.Password)
