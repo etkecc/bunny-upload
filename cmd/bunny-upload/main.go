@@ -37,8 +37,7 @@ func main() {
 	}
 
 	wp = workpool.New(75) // max concurrent connections to storage zone
-	// HTTP/1 only: Bunny storage sends GOAWAY mid-upload on HTTP/2, and a multi-GB retry loop is not the hill to die on.
-	// HTTP2 stays explicitly off, not just unset: WithProtocols replaces the preset's H1+H2 default wholesale.
+	// HTTP/1 only: Bunny GOAWAYs mid-upload on HTTP/2; WithProtocols replaces H1+H2 default, so disable H2 explicitly.
 	protocols := new(http.Protocols)
 	protocols.SetHTTP1(true)
 	protocols.SetHTTP2(false)
@@ -107,14 +106,11 @@ func uploadFile(uri, path, rpath string) error {
 	if err != nil {
 		return err
 	}
-	// an *os.File is a one-shot reader net/http won't rewind for you, so without GetBody the retrier
-	// refuses the PUT with ErrNonReplayableBody and every upload dies before a byte leaves. reopen by
-	// path: attempt 2 gets a fresh file from zero, no slurping the multi-GB blob into RAM to replay it.
+	// GetBody reopens by path on retry: *os.File won't rewind, so a retried PUT dies with ErrNonReplayableBody without it.
 	req.GetBody = func() (io.ReadCloser, error) {
 		return os.Open(path)
 	}
-	// pin Content-Length so the PUT is fixed-length, not chunked: a connection dropped mid-upload then
-	// fails loud with a length mismatch instead of Bunny storing the truncated body as a complete object.
+	// pin Content-Length so a dropped connection fails loud on length mismatch instead of storing a truncated object.
 	req.ContentLength = info.Size()
 	defer req.Body.Close()
 

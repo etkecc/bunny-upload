@@ -15,9 +15,7 @@ import (
 	"github.com/etkecc/bunny-upload/internal/config"
 )
 
-// TestUploadFileRewindsOnRetry is the guard for the fire this fix put out: an *os.File PUT with no
-// GetBody made the retrier refuse every upload with ErrNonReplayableBody. First attempt 503s, so the
-// second must replay the whole file from byte zero. No rewind, no green.
+// TestUploadFileRewindsOnRetry: no GetBody meant a retried PUT of an *os.File failed with ErrNonReplayableBody.
 func TestUploadFileRewindsOnRetry(t *testing.T) {
 	content := []byte("bunny upload payload, has to survive a rewind")
 
